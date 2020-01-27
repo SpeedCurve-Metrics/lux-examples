@@ -8,7 +8,7 @@ Either clone this repository or browse the code on GitHub. There is a directory 
 
 - [**Vue**](./vue) - A simple Vue example made with the Vue CLI.
 - [**React**](./react) - A simple React example made with creat-react-app.
-- [**React Router**](./react) - Similar to the React example but using React Router.
+- [**React Router**](./react-router) - Similar to the React example but using React Router.
 
 ## What this repository is not
 
