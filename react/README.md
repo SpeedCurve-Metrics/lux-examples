@@ -9,6 +9,10 @@ Look for `LUX START` and `LUX END` markers in these files:
 1. **public/index.html** - Includes the lux.js `<script>` tags. Make sure to replace `%YOUR_LUX_ID%` with your LUX ID.
 2. **src/App.js** - Sets the page label and sends the LUX beacon.
 
+## Important: Calling `LUX.init()`
+
+In a single-page application (SPA) you must call `LUX.init()` when a user navigates to a new page. This example application does not have multiple pages, so it does demonstrate how to call `LUX.init()`. Please see the [react-router](../react-router) example to call `LUX.init()` in a SPA. 
+
 ## Running this example
 
 To run this example application, run the following commands in this directory:
