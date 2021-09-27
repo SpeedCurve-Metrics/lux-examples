@@ -1,12 +1,16 @@
-import React from "react";
+import React from 'react';
 import {
     BrowserRouter as Router,
     Switch,
     Route,
     Link
-} from "react-router-dom";
-import Home from "./Home";
-import About from "./About";
+} from 'react-router-dom';
+import Home from './Home';
+import About from './About';
+import LuxComponent from './LuxComponent';
+
+const WrappedHome = LuxComponent(Home, "home");
+const WrappedAbout = LuxComponent(About, "about");
 
 export default function App() {
     return (
@@ -25,10 +29,10 @@ export default function App() {
 
                 <Switch>
                     <Route exact path="/">
-                        <Home />
+                        <WrappedHome />
                     </Route>
                     <Route path="/about">
-                        <About />
+                        <WrappedAbout />
                     </Route>
                 </Switch>
             </div>

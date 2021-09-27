@@ -7,7 +7,7 @@ This directory contains a project that is very similar to the [React example](..
 Look for `LUX START` and `LUX END` markers in these files:
 
 1. **public/index.html** - Includes the lux.js `<script>` tags. Make sure to replace `%YOUR_LUX_ID%` with your LUX ID.
-2. **src/Home.js** and **src/About.js** - Sets the page label for each page and sends the LUX beacon.
+2. **src/LuxComponent.js** and **src/App.js** - `LuxComponent` is a higher-order component that deals with the `LUX` API so that individual components don't have to. The main `App` component uses `LuxComponent` to wrap the individual page components.
 
 ## Running this example
 
@@ -20,40 +20,4 @@ npm start
 
 ## Further improvements
 
-`LUX.send()` is called in the `componentDidMount` callback for each page component. If your application has many page components, you might want to abstract this into a higher-order component. Below is an example of such a component.
-
-```jsx
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Switch, Route } from "react-router-dom";
-import Home from "./Home";
-import About from "./About";
-
-// LuxComponent wraps any other component and adds simple LUX tracking.
-function LuxComponent(WrappedComponent, luxLabel) {
-    return class extends React.Component {
-        componentDidMount() {
-            window.LUX.label = luxLabel;
-            window.LUX.send();
-        }
-
-        render() {
-            return <WrappedComponent {...this.props} />;
-        }
-    }
-}
-
-// Wrap each of your page components...
-const WrappedHomeComponent = LuxComponent(Home, 'home');
-const WrappedAboutComponent = LuxComponent(About, 'about');
-
-// ...And use them in place of the regular components
-<Switch>
-    <Route exact path="/">
-        <WrapedHomeComponent />
-    </Route>
-    <Route path="/about">
-        <WrapedAboutComponent />
-    </Route>
-</Switch>
-```
+Page views that were initiated by the browser's back and forward button will not be recorded in this example application. This is because the history listener in `LuxComponent` is removed before the navigation occurs. If you want to record back/forward page views as regular page views, you may want to call `LUX.init()` before removing the history listener.
